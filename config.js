@@ -36,16 +36,25 @@ window.WEDDING = {
   date: "2026-12-17T16:00:00+05:30",     // TODO: confirm the wedding time (date is correct)
   hashtag: "#VivianAndShefali",
 
+  // First screen after the envelope: the Tuscan terrace with this text on it
+  intro: {
+    lead:   "Two families are joined in love, faith and joy.",
+    groom:  { name: "Pakalapati Vivian Gnan Sagar", role: "DevOps Engineer",     parents: "Son of Mr. Vidya Sagar & Mrs. Jinny" },
+    weds:   "Weds",
+    bride:  { name: "Madapa Theresa Shefali",       role: "MBBS, MD (Paediatrics)", parents: "Daughter of Mr. Charles & Mrs. Kalpana" },
+    invite: "We joyfully invite you to celebrate the beginning of their life together."
+  },
+
   // Bible verses (NIV), in page order. Each one fills the screen between two sections.
   // Leave a text empty to hide that verse.
   verses: {
-    love:      { text: "Love is patient, love is kind.",                                          ref: "1 Corinthians 13:4" },  // after the portraits
-    joined:    { text: "Therefore what God has joined together, let no one separate.",            ref: "Mark 10:9" },           // after the ring
+    love:      { text: "Love is patient, love is kind.",                                          ref: "1 Corinthians 13:4" },  // after the ring video
+    joined:    { text: "Therefore what God has joined together, let no one separate.",            ref: "Mark 10:9" },           // after the terrace, before the ring video
     beautiful: { text: "He has made everything beautiful in its time.",                           ref: "Ecclesiastes 3:11" },   // before our story
     rejoice:   { text: "This is the day the Lord has made; let us rejoice and be glad in it.",    ref: "Psalm 118:24" },        // before the celebration
-    unity:     { text: "And over all these virtues put on love, which binds them all together in perfect unity.", ref: "Colossians 3:14" }, // before the gallery
+    unity:     { text: "And over all these virtues put on love, which binds them all together in perfect unity.", ref: "Colossians 3:14" }, // after the celebration
     ruth:      { text: "Where you go I will go, and where you stay I will stay.",                 ref: "Ruth 1:16" },           // before the footer
-    closing:   { text: "A cord of three strands is not quickly broken.",                          ref: "Ecclesiastes 4:12" }    // in the footer
+    closing:   { text: "With joyful hearts we look forward to celebrating the day with you.",     ref: "" }                     // in the footer (no reference shown)
   },
 
   events: [
@@ -67,44 +76,15 @@ window.WEDDING = {
     }
   ],
 
-  // Career timelines, side by side (groom left, bride right)
-  journeys: {
-    groom: [
-      { years: "2011 – 2014",    title: "Computer Science Engineering",   place: "Karunya (Jesus Calls), Coimbatore" },
-      { years: "2016 – 2018",    title: "Masters in Computer Science",    place: "USA" },
-      { years: "2018 – 2022",    title: "Software Engineer",              place: "Visa, USA" },
-      { years: "2022 – Present", title: "DevOps Engineer",                place: "Crédit Agricole, Singapore" }
-    ],
-    bride: [
-      { years: "2014 – 2019",    title: "MBBS",                           place: "NRI Institution, Andhra Pradesh" },
-      { years: "2022 – 2025",    title: "MD Pediatrics",                  place: "JSS Medical Institution, Mysore" },
-      { years: "2025 – 2026",    title: "MD Pediatrics",                  place: "Yashoda Hospitals, Hyderabad" }
-    ]
-  },
-
-  // "The promise" scroll scene, built from the two photos (used when there is no ring film).
-  // Points are fractions of each photo: x across, y down. Change them if you swap photos.
-  promise: {
-    scrollLength: 4.5,                   // screen-heights of scrolling
-    groomHand: { x: 0.454, y: 0.527 },   // where the ring starts (between his thumb and forefinger)
-    brideRing: { x: 0.283, y: 0.583 },   // her ring finger, where the ring lands
-    captions: [
-      { text: "With this ring…",        from: 0.30, to: 0.62 },
-      { text: "…I promise you forever", from: 0.76, to: 1.01 }
-    ]
-  },
-
-  // Scroll film: run  tools/make-frames.sh your-video.mp4  and it appears after the heart.
+  // Scroll film: run  tools/make-frames.sh your-video.mp4 24 720 7  and it appears after the terrace.
   ringFilm: {
     scrollLength: 4,                     // how many screen-heights of scrolling the film lasts
     captions: [
-      { text: "With this ring…",        from: 0.08, to: 0.45 },
+      { text: "Together…",              from: 0.08, to: 0.45 },
       { text: "…I promise you forever", from: 0.62, to: 1.01 }
     ]
   },
 
-  // Extra photos for the gallery, e.g. ["assets/g1.jpg", "assets/g2.jpg"]. Empty hides the section.
-  gallery: ["assets/Sanju.jpg", "assets/Groom.jpg"],
 
   music: ""                              // optional background song, e.g. "assets/song.mp3"
 };
