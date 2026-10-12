@@ -76,7 +76,7 @@ window.WEDDING = {
     }
   ],
 
-  // Scroll film: run  tools/make-frames.sh your-video.mp4 24 720 7  and it appears after the terrace.
+  // Scroll film: run  tools/make-frames.sh your-video.mp4 48 640 8  and it appears after the terrace.
   ringFilm: {
     scrollLength: 4,                     // how many screen-heights of scrolling the film lasts
     captions: [

@@ -326,6 +326,7 @@ if (finePointer) {
     for (let k = 0; k < 6; k++) loadNext();
 
     let want = 0, shown = -1;
+    let target = 0, pos = 0, gliding = false; // the film glides toward the scroll position instead of jumping
     let floral = null;
     { const f = new Image(); f.onload = () => { floral = f; shown = -1; draw(); }; f.src = 'assets/lace-tile.svg'; } // gold lace inside the arch band
     function nearest(i) {
@@ -433,14 +434,24 @@ if (finePointer) {
       sec.style.setProperty('--film', p.toFixed(4));
       // night gives way to day, dawning out from the centre over most of the scroll
       sec.style.setProperty('--bloom', clamp01((p - 0.3) / 0.55).toFixed(4));
-      want = Math.round(p * (count - 1));
+      target = p * (count - 1);
       caps.forEach(c => c.el.classList.toggle('on', p >= c.from && p < c.to));
+      if (!gliding) { gliding = true; requestAnimationFrame(glide); }
+    }
+    let lastT = 0;
+    function glide(t) {
+      const dt = lastT ? Math.min((t - lastT) / 1000, 0.05) : 0.016; lastT = t;
+      pos += (target - pos) * (1 - Math.pow(0.0005, dt));   // eases in ~0.3s, so quick flicks still play every frame
+      if (Math.abs(target - pos) < 0.3) pos = target;
+      want = Math.round(pos);
       draw();
+      if (pos !== target) requestAnimationFrame(glide); else { gliding = false; lastT = 0; }
     }
     addEventListener('scroll', onScroll, { passive: true });
     addEventListener('resize', size);
     size();
     onScroll();
+    pos = target; want = Math.round(pos); draw(); // start on the right frame without gliding in
   }
 })();
 
